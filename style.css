@@ -2,7 +2,7 @@
   box-sizing: border-box;
   
 }
-body{
+.container-fluid{
   background-color: #1E1E1E;
 }
 
@@ -70,7 +70,23 @@ body{
   width: 5rem;
   flex-shrink: 0;
 }
-.ms-sm-3{
-   margin-left: 30% !important
+.container-box{
+  width: 281px;
+  height: 224px;
 }
+.container-box-text{
+  background-color: #117967;
+  border-radius: 20px;
+  width: 281px;
+  height: 57px;
+  text-align: center;
+}
+.container-box-img{
+  margin-top: 23px;
+  margin-left: 10px;
+  width: 154px;
+  height: 144px;
+  background-color: white;
+}
+
 
