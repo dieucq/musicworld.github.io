@@ -38,7 +38,7 @@
                 height="auto"
               />
             </a>
-             <a href="">Your music</a>
+             <a href="#!YourPlaylist">Your music</a>
             <a href="#!Discover">Discover</a>
             <div class="dropdown d-inline-flex" >
               
@@ -82,13 +82,14 @@
              <div ng-view>
                 
              </div>
+              
             </div>
           </div>
         </div>
       </div>
 
       <!-- Audio -->
-      <div class="row sticky-bottom">
+      <div class="row sticky-bottom mt-3"> <!--Tao khoang cach tu main content đến Audio, vì Audio che Main Content-->
         <div class="col-4 bg-secondary d-inline-flex">
           <img
             src="/Image/logo button.png"
@@ -137,6 +138,9 @@
             })
             .when("/artist",{
                 templateUrl:"/artist.html"
+            })
+            .when("/YourPlaylist",{
+                templateUrl:"/yourplaylist.html"
             })
             .when("/Category",{
               templateUrl:"/category.html"
