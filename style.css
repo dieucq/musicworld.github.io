@@ -11,7 +11,7 @@
   margin: 0;
   padding: 0;
   width: 16%;
-  background-color: #20342D;
+  background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -37,30 +37,37 @@
   color: white;
 }
 .container-header{
-  background-color: #142922;
-  
+  background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
 }
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 .container-content {
-  background-color: #142922;
+  background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
   color: white; 
 }
-
+.content-sidebar{
+  margin-left: 5%;
+  padding-bottom: 50px;
+  font-size: 20px;
+}
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
   .sidebar {
-    width: 10%; /*Due to side reduce to 10% so that div content will be reduce to 11%*/
+    width: 15%; /*Due to side reduce to 10% so that div content will be reduce to 11%*/
   }
   .sidebar a {float: left;}
-  div.content {margin-left: 11%;}
+  div.content {margin-left: 16%;}
+  .content-sidebar{
+    display: none;
+  }
+  
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
   .sidebar a {
-    
     float: left;
   }
+ 
 }
 .dropdown-item{
   margin-left: 15% ;
@@ -82,13 +89,6 @@
   height: 57px;
   text-align: center;
   font-size: 30px;
-}
-.container-box-img{
-  margin-top: 23px;
-  margin-left: 10px;
-  width: 150px;
-  height: 150px;
-  background-color: white;
 }
 .text-MV{
   font-size: 2rem;
@@ -203,4 +203,7 @@
   height: 200px;
   background-color: #ffffff;
   margin-right: 3rem;
+}
+.dropdown-item:hover{
+  width:120px;
 }
