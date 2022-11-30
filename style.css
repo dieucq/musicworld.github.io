@@ -1,196 +1,342 @@
-body{
-  background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
 }
-.container-fluid{
-  background-color: #1E1E1E;
-}
-
-/* The side navigation menu */
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 17%;
-  background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-  z-index: 99;
-}
-
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  color: white;
-  padding: 16px;
-  text-decoration: none;
-}
-
-/* Active/current link */
-.sidebar a.active {
-  background-color: grey;
-}
-
-/* Links on mouse-over */
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-.container-header{
-  background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
-}
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-.container-content {
-  background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
-  color: white; 
-}
-.content-sidebar{
-  margin-left: 5%;
-  padding-bottom: 50px;
-  font-size: 20px;
-}
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 15%; /*Due to side reduce to 10% so that div content will be reduce to 11%*/
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 16%;}
-  .content-sidebar{
-    display: none;
-  }
-  
-}
-
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    float: left;
-  }
- 
-}
-.dropdown-item{
-  margin-left: 15% ;
-}
-.space{
-  border:solid, black;
-  border-width: 1px 0;
-  width: 5rem;
-  flex-shrink: 0;
-}
-.text-MV{
-  font-size: 2rem;
-  width: 125px;
-  height: 46px;
-  text-align: center;
-  border: 1px solid white;
-  border-radius: 20px;
-  margin-right: 13px;
-}
-.text-MV-2{
-  width: 168px;
-  height: 47px;
-  background-color: #D8D8D8;
-  color: black;
-  border: 1px solid white;
-  border-radius: 20px;
-  
- 
-  font-size: 2rem;
-}
-.MV{
-  width: 16rem;
-  height: 9rem;
-  background-color: #ffffff;
-  margin-top: 2rem;
-  border-radius: 20px;
-}
-.bi-play-circle-fill{
-  position: relative;
-  float: right;
-  margin-top: 80px;
-  font-size: 3rem;
-  color: black;
-}
-.art-img{
-  position: relative;
-  margin-top: 5rem;
-  margin-left: auto;
-}
-.artist-name-khung{
-  width: 125px;
-  height: 40px;
-  background-color: #8AA391;
-  border-radius: 20px;
-  text-align: center;
-}
-.artist-event-khung{
-  width: 150px;
-  height: 45px;
-  background-color: #A5C9CA;
-  border-radius: 20px;
-  text-align: center;
-  margin-top: 2rem;
-}
-.artist-songs-khung{
-  background-color: #395652;
+body {
   width: 100%;
-  height: 300px;
-  border-radius: 10px;
+  height: auto;
+  position: relative;
 }
-.artist-songs-khung-2{
-  background-color: #395652;
-  width: 90%;
-  height: 500px;
+#maincontent {
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 20%;
+  overflow-y: auto;
 }
-.artist-songs-dot{
-  width: 35px;
-  height: 35px;
-  background-color: #117967;
-  text-align: center;
+/* HEADER */
+
+header {
+  box-shadow: 2px 10px white;
 }
-.bg-success{
-  background-color: #8AA391;
+/* SIDEBAR */
+.sidebar ul li:hover {
+  background-color: #464951;
+  border-radius: 5%;
 }
-.artist-album-khung{
+
+/* DISCOVER PAGE */
+body .main_content {
+  position: relative;
+}
+/* New Releases */
+.bySong,
+.byArtist {
+  width: 95%;
+  height: auto;
+  margin: auto;
+  margin-top: 20px;
+}
+.bySong .h4,
+.byArtist .h4 {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  color: #fff;
+}
+.bySong .h4 .bi {
+  color: #a4a8b4;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+.bySong .h4 .bi:hover {
+  color: #fff;
+}
+
+.bySong .listSong,
+.byArtist .listArtist {
+  width: 100%;
+  height: auto;
+  margin-top: 15px;
+  display: flex;
+  justify-content: start;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.bySong .listSong::-webkit-scrollbar,
+.byArtist .listArtist::-webkit-scrollbar {
+  display: none;
+}
+.bySong .listSong li {
+  width: 120px;
+  height: 150px;
+  list-style: none;
+  margin-right: 10px;
+  transition: 0.3s linear;
+}
+
+.byArtist .listArtist li {
+  list-style-type: none;
+  position: relative;
+  min-width: 150px;
+  height: auto;
+  /* background-color: #fff; */
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.bySong .listSong li:hover {
+  background: rgb(105, 105, 170, 0.1);
+}
+.bySong .listSong li .img_play {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bySong .listSong li .img_play img {
+  width: 100px;
+  height: 100px;
+  border-radius: 5%;
+}
+.byArtist .listArtist img {
   width: 150px;
   height: 150px;
-  background-color: white;
-  border-radius: 10px;
-  color: black;
 }
-.container-yplaylist-nav{
-  width: 800px;
-  height: 50px;
-  text-align: center;
-  margin-left: 40px;
-  margin-top: 20px;
-  background-color: #395651;
+.bySong .listSong li .img_play .bi {
+  position: absolute;
+  font-size: 40px;
+  cursor: pointer;
+  transition: 0.3s linear;
+  opacity: 0;
 }
-.container-yplaylist-nav-2{
-  width: 636px;
-  height: 50px;
-  text-align: center;
-  margin-left: 40px;
-  margin-top: 20px;
-  background-color: #395651;
+.bySong .listSong li .img_play:hover .bi {
+  opacity: 1;
 }
-.container-yplaylist-nav-item{
-  width: 175px;
-  height: 36px;
-  background-color: #D9D9D9;
+.bySong .listSong li h5 {
+  padding: 5px 0px 0px 5px;
+  line-height: 15px;
+  font-size: 13px;
+  color: #fff;
 }
-.rounded-circle{
-  width: 175px;
-  height: 175px;
-  background-color: #ffffff;
-  margin-right: 3rem;
+.bySong .listSong li h5 .singer {
+  font-size: 10px;
+  color: #80879a;
 }
-.rounded{
-  width: 200px;
-  height: 200px;
-  background-color: #ffffff;
-  margin-right: 3rem;
+
+/* CATEGORY */
+.category {
+  position: relative;
+  width: 95%;
 }
-.dropdown-item:hover{
-  width:120px;
+
+/* ARTIST */
+.artistPage {
+  width: 95%;
+}
+.artist {
+  background-repeat: no-repeat;
+}
+/* div img {
+  opacity: 0.5;
+} */
+
+/* MUSIC PLAYER */
+footer .musicplayer {
+  width: 100%;
+  height: 100px;
+  background: #202229;
+  box-shadow: 0px 3px 8px #5974ba;
+}
+footer .musicplayer {
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  justify-content: center;
+}
+
+footer .musicplayer img {
+  width: 60px;
+  height: 60px;
+  border: none;
+}
+footer .musicplayer h5 {
+  width: 130px;
+  font-size: 13px;
+  margin-left: 15px;
+  color: #fff;
+  line-height: 17px;
+}
+footer .musicplayer h5 .singer {
+  font-size: 11px;
+  color: #5269aa;
+}
+footer .musicplayer .icon {
+  font-size: 20px;
+  color: #fff;
+  margin: 0px 20px 0px 40px;
+  outline: none;
+}
+footer .musicplayer .icon .bi {
+  cursor: pointer;
+  outline: none;
+}
+
+.musicplayer span {
+  color: #fff;
+  width: 32px;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.musicplayer .bar {
+  position: relative;
+  width: 43%;
+  height: 2px;
+  background: rgb(105, 105, 170, 0.1);
+  margin: 0px 15px 0px 10px;
+}
+.musicplayer .bar .bar2 {
+  position: absolute;
+  background: #36e2ec;
+  width: 0%;
+  height: 100%;
+  top: 0;
+  transition: 1s linear;
+}
+.musicplayer .bar input {
+  position: absolute;
+  width: 100%;
+  top: -6px;
+  left: 0;
+  cursor: pointer;
+  z-index: 99999999;
+  opacity: 0;
+}
+.musicplayer .vol {
+  position: relative;
+  /* width: 100px;
+  height: 2px; */
+  margin-left: 50px;
+  /* background: rgb(105, 105, 170, 0.1); */
+  cursor: pointer;
+}
+.musicplayer .vol .bi {
+  position: absolute;
+  color: #fff;
+  font-size: 25px;
+  top: -18px;
+  left: -30px;
+}
+body_a {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+button_a {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button_a:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content_a {
+  background-color: #fefefe;
+  margin-top: 3%; /* 3% from the top, 3% from the bottom and centered */
+  margin-bottom: 3%;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
 }

@@ -1,174 +1,426 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Music World</title>
     <link
+      rel="icon"
+      href="./logo/logo-Title-MUSICWORLD.png"
+      type="image/icon"
+    />
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.css" /> -->
+    <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
     />
-    <link rel="stylesheet" type = "text/css" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <body ng-app="myApp">
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
 
+  <body
+    ng-controller="mainCtrl"
+    class="container-fluid d-flex justify-content-center fixed-top g-0"
+  >
+  <script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+  crossorigin="anonymous"
+></script>
+    <!-- Initalize SoundManager -->
+    <sound-manager></sound-manager>
+
+    <!-- Content layout -->
     <div class="container-fluid">
-      <div class="row">
-        <!-- The sidebar -->
-        <div class="col-2">
-          <div class="sidebar">
-            <a href="#/!">
-             <div class="col-12"> <img 
-                src="/Image/logo-final3.png"
-                alt=""
-                width="100%"
-                height="100%"
+      <div class="row d-flex justify-content-center">
+        <!-- SIDEBAR -->
+        <div class="sidebar col-2 bg-primary d-flex flex-nowrap g-0">
+          <div
+            class="col-2 d-flex flex-column flex-shrink-0 p-2 text-bg-dark"
+            style="width: 100%"
+          >
+            <a
+              href="index.html"
+              class="d-flex align-items-center mb-5 mb-md-0 me-md-auto text-white text-decoration-none pt-0"
+            >
+              <img
+                src="./logo/logo-final3.png"
+                width="80%"
+                height="auto"
+                alt="logo"
+                style="margin: auto; padding: 0"
               />
-            </div>
             </a>
-              <a href="#!YourPlaylist"><i class="bi bi-collection-play text-primary" style="font-size: 2rem;"></i> <span class="content-sidebar">  Your music </span></a>
-              <a href="#!Discover"><i class="bi bi-disc text-primary" style="font-size: 2rem;"></i> <span class="content-sidebar">  Discover </span></a>
-              <a href="#!Category" ><i class="bi bi-music-note-list text-primary" style="font-size: 2rem;"></i> <span class="content-sidebar">  Category </span></a>
-              <a href="#!artist"><i class="bi bi-people-fill text-primary" style="font-size: 2rem;"></i> <span class="content-sidebar">  Artist </span></a>
-              <a href="#!MV"><i class="bi bi-camera-reels text-primary" style="font-size: 2rem;"></i> <span class="content-sidebar">  MV </span></a>              
+            <hr />
+            <ul
+              class="nav nav-pills flex-column mb-auto"
+              ng-controller="activeCtrl"
+            >
+              <li class="nav-item">
+                <a
+                  href="#!yourPlaylist"
+                  class="nav-link text-start text-light"
+                  aria-current="page"
+                  ng-class="{active: isActive('/yourPlaylist')}"
+                >
+                  <i class="bi bi-collection-play"></i>
+                  Your Music
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#!discover"
+                  class="nav-link text-white"
+                  class="nav-link text-start"
+                  aria-current="page"
+                  ng-class="{active: isActive('/discover')}"
+                >
+                  <i class="bi bi-disc"></i>
+                  Discover
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#!category"
+                  class="nav-link text-white"
+                  ng-class="{active: isActive('/category')}"
+                >
+                  <i class="bi bi-music-note-list"></i>
+                  Category
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  href="#!artist/:id"
+                  class="nav-link text-white"
+                  ng-class="{active: isActive('/artist/:id')}"
+                >
+                  <i class="bi bi-person-rolodex"></i>
+                  Artists
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-
-        <div class="col-10  ">
-          <!-- Header -->
+        <div class="col-10">
           <div class="row">
-            <div class="col-10 container-header sticky-top d-flex justify-content-center p-3">
-              <form
-              class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-auto w-75 ps-5 ms-5"
-              role="search"
-            >
-              <div class="input-group">
-                <input
-                  type="search"
-                  class="form-control form-control-dark input-group text-bg-light"
-                  placeholder="Search..."
-                  aria-label="Search"
-                />
-                <button class="btn btn-light" type="submit">
-                  <svg
-                    width="25"
-                    height="22"
-                    viewBox="0 0 35 35"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+            <!-- HEADER -->
+            <div class="hd1 col-12 text-bg-dark g-0">
+              <header class="p-3 text-bg-dark">
+                <div class="container">
+                  <div
+                    class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M25.1563 13.5625C25.1563 14.7074 24.9016 15.8412 24.4068 16.899C23.9122 17.9568 23.1871 18.918 22.2731 19.7276C21.359 20.5371 20.2738 21.1794 19.0795 21.6177C17.8852 22.0557 16.6052 22.2812 15.3125 22.2812C14.0198 22.2812 12.7397 22.0557 11.5454 21.6177C10.3511 21.1794 9.26597 20.5371 8.3519 19.7276C7.43781 18.918 6.71274 17.9568 6.21804 16.899C5.72334 15.8412 5.46873 14.7074 5.46873 13.5625C5.46873 11.2501 6.50583 9.03249 8.3519 7.39741C10.198 5.76232 12.7017 4.84375 15.3125 4.84375C17.9232 4.84375 20.427 5.76232 22.2731 7.39741C24.1192 9.03249 25.1563 11.2501 25.1563 13.5625ZM23.3625 22.7462C20.7252 24.5597 17.4067 25.4148 14.0827 25.1373C10.7586 24.8601 7.67885 23.4711 5.47037 21.2532C3.26187 19.0354 2.09069 16.1554 2.19521 13.1997C2.29975 10.244 3.67214 7.43458 6.033 5.34353C8.39388 3.25248 11.5657 2.03693 14.9029 1.94434C18.24 1.85176 21.4915 2.8891 23.9956 4.8452C26.4996 6.80128 28.0678 9.52907 28.3808 12.4732C28.6941 15.4174 27.7288 18.3566 25.6813 20.6925L32.3313 26.5825C32.4925 26.7156 32.6218 26.876 32.7114 27.0543C32.8011 27.2325 32.8493 27.4249 32.8532 27.62C32.8571 27.8151 32.8164 28.0089 32.734 28.1898C32.6515 28.3708 32.5286 28.5351 32.3728 28.6731C32.2171 28.8112 32.0316 28.9199 31.8273 28.9929C31.6229 29.066 31.4042 29.102 31.1839 29.0985C30.9636 29.0951 30.7462 29.0524 30.5452 28.973C30.3439 28.8935 30.1628 28.779 30.0125 28.6362L23.3625 22.7462Z"
-                      fill="black"
-                    />
-                  </svg>
-                </button>
-              </div>
-              </form>
+                    <form
+                      class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-auto w-50 ps-5 ms-5"
+                      role="search"
+                    >
+                      <!-- Search input and Search Button -->
+                      <div class="input-group">
+                        <input
+                          type="search"
+                          class="form-control form-control-dark input-group text-bg-light"
+                          placeholder="Search..."
+                          aria-label="Search"
+                          ng-model="mySearch"
+                        />
+                        <button class="btn btn-light" type="submit">
+                          <svg
+                            width="25"
+                            height="22"
+                            viewBox="0 0 35 35"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M25.1563 13.5625C25.1563 14.7074 24.9016 15.8412 24.4068 16.899C23.9122 17.9568 23.1871 18.918 22.2731 19.7276C21.359 20.5371 20.2738 21.1794 19.0795 21.6177C17.8852 22.0557 16.6052 22.2812 15.3125 22.2812C14.0198 22.2812 12.7397 22.0557 11.5454 21.6177C10.3511 21.1794 9.26597 20.5371 8.3519 19.7276C7.43781 18.918 6.71274 17.9568 6.21804 16.899C5.72334 15.8412 5.46873 14.7074 5.46873 13.5625C5.46873 11.2501 6.50583 9.03249 8.3519 7.39741C10.198 5.76232 12.7017 4.84375 15.3125 4.84375C17.9232 4.84375 20.427 5.76232 22.2731 7.39741C24.1192 9.03249 25.1563 11.2501 25.1563 13.5625ZM23.3625 22.7462C20.7252 24.5597 17.4067 25.4148 14.0827 25.1373C10.7586 24.8601 7.67885 23.4711 5.47037 21.2532C3.26187 19.0354 2.09069 16.1554 2.19521 13.1997C2.29975 10.244 3.67214 7.43458 6.033 5.34353C8.39388 3.25248 11.5657 2.03693 14.9029 1.94434C18.24 1.85176 21.4915 2.8891 23.9956 4.8452C26.4996 6.80128 28.0678 9.52907 28.3808 12.4732C28.6941 15.4174 27.7288 18.3566 25.6813 20.6925L32.3313 26.5825C32.4925 26.7156 32.6218 26.876 32.7114 27.0543C32.8011 27.2325 32.8493 27.4249 32.8532 27.62C32.8571 27.8151 32.8164 28.0089 32.734 28.1898C32.6515 28.3708 32.5286 28.5351 32.3728 28.6731C32.2171 28.8112 32.0316 28.9199 31.8273 28.9929C31.6229 29.066 31.4042 29.102 31.1839 29.0985C30.9636 29.0951 30.7462 29.0524 30.5452 28.973C30.3439 28.8935 30.1628 28.779 30.0125 28.6362L23.3625 22.7462Z"
+                              fill="black"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </form>
+                    <!-- Settings Button, Sign In and Sign up -->
+                    <!-- <div class="text-end">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-light rounded-circle bg-light me-3"
+                      >
+                        <svg
+                          width="20"
+                          height="25"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12ZM14.5 12C14.5 13.3807 13.3807 14.5 12 14.5C10.6193 14.5 9.5 13.3807 9.5 12C9.5 10.6193 10.6193 9.5 12 9.5C13.3807 9.5 14.5 10.6193 14.5 12Z"
+                            fill="#24292F"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M12 1C11.7322 1 11.4664 1.00959 11.2032 1.02845C10.4396 1.08316 9.85767 1.64472 9.69085 2.33178L9.33881 3.7817C9.31981 3.85995 9.24927 3.95388 9.11444 4.00254C8.86586 4.09224 8.62269 4.19319 8.38555 4.30475C8.256 4.36569 8.13976 4.34921 8.07095 4.30729L6.79665 3.5309C6.19316 3.16321 5.38503 3.17741 4.80641 3.67799C4.40363 4.02644 4.02644 4.40363 3.67799 4.80641C3.17741 5.38503 3.16321 6.19316 3.5309 6.79665L4.30729 8.07095C4.34921 8.13976 4.36569 8.256 4.30475 8.38555C4.19318 8.62269 4.09224 8.86586 4.00254 9.11444C3.95388 9.24927 3.85995 9.31981 3.7817 9.33881L2.33178 9.69085C1.64472 9.85767 1.08316 10.4396 1.02845 11.2032C1.00959 11.4664 1 11.7322 1 12C1 12.2678 1.00959 12.5336 1.02845 12.7968C1.08316 13.5604 1.64472 14.1423 2.33178 14.3092L3.7817 14.6612C3.85995 14.6802 3.95388 14.7507 4.00254 14.8856C4.09224 15.1341 4.19318 15.3773 4.30475 15.6145C4.36569 15.744 4.34921 15.8602 4.30729 15.9291L3.5309 17.2034C3.16321 17.8068 3.17741 18.615 3.67799 19.1936C4.02644 19.5964 4.40363 19.9736 4.80641 20.322C5.38503 20.8226 6.19316 20.8368 6.79665 20.4691L8.07095 19.6927C8.13975 19.6508 8.256 19.6343 8.38555 19.6953C8.62269 19.8068 8.86586 19.9078 9.11444 19.9975C9.24927 20.0461 9.31981 20.14 9.33881 20.2183L9.69085 21.6682C9.85767 22.3553 10.4396 22.9168 11.2032 22.9715C11.4664 22.9904 11.7322 23 12 23C12.2678 23 12.5336 22.9904 12.7968 22.9715C13.5604 22.9168 14.1423 22.3553 14.3092 21.6682L14.6612 20.2183C14.6802 20.14 14.7507 20.0461 14.8856 19.9975C15.1341 19.9078 15.3773 19.8068 15.6145 19.6953C15.744 19.6343 15.8602 19.6508 15.9291 19.6927L17.2034 20.4691C17.8068 20.8368 18.615 20.8226 19.1936 20.322C19.5964 19.9736 19.9736 19.5964 20.322 19.1936C20.8226 18.615 20.8368 17.8068 20.4691 17.2034L19.6927 15.929C19.6508 15.8602 19.6343 15.744 19.6953 15.6145C19.8068 15.3773 19.9078 15.1341 19.9975 14.8856C20.0461 14.7507 20.14 14.6802 20.2183 14.6612L21.6682 14.3092C22.3553 14.1423 22.9168 13.5604 22.9715 12.7968C22.9904 12.5336 23 12.2678 23 12C23 11.7322 22.9904 11.4664 22.9715 11.2032C22.9168 10.4396 22.3553 9.85767 21.6682 9.69085L20.2183 9.33881C20.14 9.31981 20.0461 9.24927 19.9975 9.11444C19.9078 8.86586 19.8068 8.62269 19.6953 8.38555C19.6343 8.256 19.6508 8.13976 19.6927 8.07095L20.4691 6.79665C20.8368 6.19316 20.8226 5.38503 20.322 4.80641C19.9736 4.40363 19.5964 4.02644 19.1936 3.67799C18.615 3.17741 17.8068 3.16321 17.2034 3.5309L15.929 4.30729C15.8602 4.34921 15.744 4.36569 15.6145 4.30475C15.3773 4.19318 15.1341 4.09224 14.8856 4.00254C14.7507 3.95388 14.6802 3.85995 14.6612 3.7817L14.3092 2.33178C14.1423 1.64472 13.5604 1.08316 12.7968 1.02845C12.5336 1.00959 12.2678 1 12 1ZM11.3104 2.52461C11.538 2.5083 11.768 2.5 12 2.5C12.232 2.5 12.462 2.5083 12.6896 2.52461C12.7451 2.52859 12.8246 2.57475 12.8515 2.6857L13.2035 4.13562C13.3558 4.76252 13.8287 5.21583 14.3764 5.41348C14.5808 5.48724 14.7808 5.57026 14.9759 5.66205C15.5032 5.9101 16.1584 5.92401 16.7095 5.58826L17.9838 4.81187C18.0813 4.75249 18.1701 4.77595 18.2122 4.81239C18.5604 5.11359 18.8864 5.43965 19.1876 5.7878C19.2241 5.82992 19.2475 5.91874 19.1881 6.01619L18.4117 7.29049C18.076 7.84156 18.0899 8.49682 18.3379 9.02408C18.4297 9.21919 18.5128 9.4192 18.5865 9.6236C18.7842 10.1713 19.2375 10.6442 19.8644 10.7965L21.3143 11.1485C21.4252 11.1754 21.4714 11.2549 21.4754 11.3104C21.4917 11.538 21.5 11.768 21.5 12C21.5 12.232 21.4917 12.462 21.4754 12.6896C21.4714 12.7451 21.4252 12.8246 21.3143 12.8515L19.8644 13.2035C19.2375 13.3558 18.7842 13.8287 18.5865 14.3764C18.5128 14.5808 18.4297 14.7808 18.3379 14.9759C18.0899 15.5032 18.076 16.1584 18.4117 16.7095L19.1881 17.9838C19.2475 18.0813 19.224 18.1701 19.1876 18.2122C18.8864 18.5604 18.5604 18.8864 18.2122 19.1876C18.1701 19.2241 18.0813 19.2475 17.9838 19.1881L16.7095 18.4117C16.1584 18.076 15.5032 18.0899 14.9759 18.3379C14.7808 18.4297 14.5808 18.5128 14.3764 18.5865C13.8287 18.7842 13.3558 19.2375 13.2035 19.8644L12.8515 21.3143C12.8246 21.4252 12.7451 21.4714 12.6896 21.4754C12.462 21.4917 12.232 21.5 12 21.5C11.768 21.5 11.538 21.4917 11.3104 21.4754C11.2549 21.4714 11.1754 21.4252 11.1485 21.3143L10.7965 19.8644C10.6442 19.2375 10.1713 18.7842 9.6236 18.5865C9.4192 18.5128 9.21919 18.4297 9.02408 18.3379C8.49682 18.0899 7.84156 18.076 7.29049 18.4117L6.01619 19.1881C5.91873 19.2475 5.82992 19.224 5.7878 19.1876C5.43965 18.8864 5.11359 18.5604 4.81239 18.2122C4.77595 18.1701 4.75249 18.0813 4.81187 17.9838L5.58826 16.7095C5.92401 16.1584 5.9101 15.5032 5.66205 14.9759C5.57026 14.7808 5.48724 14.5808 5.41348 14.3764C5.21583 13.8287 4.76252 13.3558 4.13562 13.2035L2.6857 12.8515C2.57475 12.8246 2.52859 12.7451 2.52461 12.6896C2.5083 12.462 2.5 12.232 2.5 12C2.5 11.768 2.5083 11.538 2.52461 11.3104C2.52859 11.2549 2.57475 11.1754 2.6857 11.1485L4.13562 10.7965C4.76252 10.6442 5.21583 10.1713 5.41348 9.6236C5.48724 9.4192 5.57026 9.21919 5.66205 9.02408C5.9101 8.49682 5.92401 7.84156 5.58826 7.29049L4.81187 6.01619C4.75249 5.91874 4.77595 5.82992 4.81239 5.7878C5.11359 5.43965 5.43965 5.11359 5.7878 4.81239C5.82992 4.77595 5.91874 4.75249 6.01619 4.81187L7.29049 5.58826C7.84156 5.92401 8.49682 5.9101 9.02408 5.66205C9.21919 5.57026 9.4192 5.48724 9.6236 5.41348C10.1713 5.21583 10.6442 4.76252 10.7965 4.13562L11.1485 2.6857C11.1754 2.57475 11.2549 2.52859 11.3104 2.52461Z"
+                            fill="#24292F"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-outline-light text-bg-light me-2"
+                      >
+                        Sign in
+                      </button>
+                      <button type="button" class="btn btn-warning">
+                        Sign-up
+                      </button>
+                    </div> -->
+                    <div class="text-end dropdown container-header d-flex justify-content-start sticky-top p-3">
+                      <button class="btn btn-secondary rounded-pill me-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi-gear-fill"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Term of uses</a></li>
+                        <li><a class="dropdown-item" href="#">About Us</a></li>
+                      </ul>
+                      <button class="btn btn-secondary rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><button onclick="document.getElementById('id02').style.display='block'" style="width:auto;" type="button" class="btn">Sign In</button_a></li>
+                        <li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" type="button" class="btn">Sign Up</button_a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </header>
             </div>
-            <div class="col-2 dropdown container-header d-flex justify-content-start sticky-top p-3">
-              <button class="btn btn-secondary rounded-pill me-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi-gear-fill"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Term of uses</a></li>
-                <li><a class="dropdown-item" href="#">About Us</a></li>
-              </ul>
-              <button class="btn btn-secondary rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Sign in</a></li>
-                <li><a class="dropdown-item" href="#">Sign up</a></li>
-              </ul>
-            </div>
-          <!-- Main containt -->
-          <div class="col-12">
-            <div class="container-content">
-             <div ng-view>
-                
-             </div>
-              
+          </div>
+                       <!--Sign In modal--> <!--Luu y, nut X khong duoc trung voi carousel-->
+                       <div id="id02" class="modal mt-5">
+                        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <form class="modal-content_a m-auto" onsubmit="signin()">
+                          <div class="container">
+                            <h1>Sign In</h1>
+                            <p>Please fill in this form to log in an account.</p>
+                            <hr>
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="email" required id="useremailSI">
+                      
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required id="userpwSI">
+                            
+                            <label>
+                              <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                            </label>
+                      
+                            <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+                      
+                            <div class="clearfix">
+                              <button_a type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button_a>
+                              <input type="submit" class="signupbtn"  value="Sign In" style="background-color: #04AA6D;
+                              color: white;
+                              padding: 14px 20px;
+                              margin: 8px 0;
+                              border: none;
+                              cursor: pointer;
+                              width: 50%;
+                              opacity: 0.9;" > 
+                              
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!--Sign UP modal-->
+                      <div id="id01" class="modal mt-5">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <form class="modal-content_a m-auto" onsubmit="signup()">
+                          <div class="container">
+                            <h1>Sign Up</h1>
+                            <p>Please fill in this form to create an account.</p>
+                            <hr>
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="email" required id="useremailSU">
+                      
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required id="userpwSU">
+                      
+                            <label for="psw-repeat"><b>Repeat Password</b></label>
+                            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                            
+                            <label>
+                              <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                            </label>
+                      
+                            <p>By creating an account you agree to our <a href="Terms of use.html" style="color:dodgerblue">Terms of use</a>.</p>
+                      
+                            <div class="clearfix">
+                              <button_a type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button_a>
+                              <input type="submit" class="signupbtn"  value="Sign Up" style="background-color: #04AA6D;
+                              color: white;
+                              padding: 14px 20px;
+                              margin: 8px 0;
+                              border: none;
+                              cursor: pointer;
+                              width: 50%;
+                              opacity: 0.9;" > 
+                            
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- Comment -->
+                      <div id="id03" class="modal mt-5">
+                        <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <form class="modal-content_a m-auto" onsubmit="submit()">
+                          <div class="container">
+                            
+                                <label for="country">Country</label>
+                                <select id="country" name="country">
+                                  <option value="australia">Australia</option>
+                                  <option value="canada">Canada</option>
+                                  <option value="usa">USA</option>
+                                  <option value="vn">Viet Nam</option>
+                                </select>
+                             <br>
+                                <textarea id="subject" name="subject" placeholder="Comment in here..." style="height:200px; width: 100%;" ></textarea>
+                            <div class="clearfix">
+                              <button_a type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button_a>
+                              <input type="submit" class="signupbtn"  value="Save changes" style="background-color: #04AA6D;
+                              color: white;
+                              padding: 14px 20px;
+                              margin: 8px 0;
+                              border: none;
+                              cursor: pointer;
+                              width: 50%;
+                              opacity: 0.9;" > 
+                            
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!--Lyrics-->
+                      <div id="id04" class="modal mt-5">
+                        <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <form class="modal-content_a m-auto">
+                          <div class="container">
+                            
+                                <label for="country">Music: </label>
+                                <span>{{currentPlaying.title}}</span> <br>
+
+                                <label for="country">Artist: </label>
+                                <span>{{currentPlaying.artist[1]}}</span> <br>
+
+                                <label for="country">Album: </label>
+                                <span>{{currentPlaying.album}}</span> <br>
+
+                                <label for="country">Genre: </label>
+                                <span>{{currentPlaying.genre}}</span> <br>
+                                
+                                <label for="country">Nation: </label>
+                                <span>{{currentPlaying.nation}}</span> <br>
+                               
+                                <textarea id="subject" name="subject" style="height:200px; width: 100%;" >{{currentPlaying.lyric}}</textarea>
+                            <div class="clearfix">
+                              <button_a type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn">Cancel</button_a>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+          <!-- MAIN CONTENT -->
+          <div class="row">
+            <div class="col-12 text-bg-dark" id="maincontent">
+              <div ui-view></div>
             </div>
           </div>
         </div>
       </div>
+      <!-- FOOTER: MUSIC PLAYER -->
+      <div class="row d-flex justify-content-center align-content-center">
+        <div class="col-12 bg-primary g-0">
+          <footer class="footer mt-auto fixed-bottom">
+            <div class="musicplayer d-flex justify-content-center g-2">
+              <img ng-src="{{currentPlaying.picUrl}}" />
+              <h5 id="title">
+                {{currentPlaying.title}}<br />
+                <div class="singer">{{currentPlaying.artist[0]}}</div>
+              </h5>
+              <div class="icon">
+                <i class="bi bi-skip-start-fill" prev-track id="back"></i>
+                <i
+                  ng-show="!isPlaying"
+                  class="bi bi-play-fill h3"
+                  play-music
+                ></i>
+                <i
+                  ng-show="isPlaying"
+                  class="bi bi-pause-fill h3"
+                  pause-music
+                ></i>
 
-      <!-- Audio -->
-      <div class="row sticky-bottom mt-3"> <!--Tao khoang cach tu main content đến Audio, vì Audio che Main Content-->
-        <div class="col-4 bg-secondary d-inline-flex">
-          <img
-            src="/Image/logo button.png"
-            alt=""
-            width="10%"
-            height="auto"
-            style="border-radius: 50%"
-          />
-          <div class="mt-2 ms-3" style="font-size: 2rem">Name</div>
-          <div class="mt-2 ms-3">
-            <i class="bi bi-star-fill" style="font-size: 2rem"></i>
-          </div>
-          <div class="mt-2 ms-3">
-            <button style="font-size: 2rem">..</button>
-          </div>
-        </div>
+                <i class="bi bi-skip-end-fill" id="next" next-track></i>
+                <i class="bi bi-stop-fill" stop-music></i>
+                <i class="bi bi-music-note-list"  onclick="document.getElementById('id04').style.display='block'" ></i>
+               <a ng-href="{{currentPlaying.url}}" download=""> <i class="bi bi-cloud-arrow-down" id="download" ng-src="{{currentPlaying.url}}"  style="display: none;" ></i> </a>  <!-- ng-show="checkSignIN()" ng-click="myFunc()" --> <!--id="checkSignIN"-->
+                <i class="bi bi-chat-dots" id="comment" style="display: none;" onclick="document.getElementById('id03').style.display='block'" ></i>
 
-        <div class="col-4 bg-warning d-inline-flex justify-content-center">
-          <audio src="/music/Just Give Me A Reason - P!nk, Nate Ruess.MP3" controls class="mt-1 mb-1"></audio>
-        </div>
-
-        <div class="col-4 bg-primary d-inline-flex justify-content-end">
-          <button type="button" class="btn">Basic</button>
-          <button type="button" class="btn btn-primary">Primary</button>
-          <button type="button" class="btn btn-secondary">Secondary</button>
-          <button type="button" class="btn btn-success">Success</button>
-          <button type="button" class="btn btn-info">Info</button>
+              </div>
+              <span>{{currentPostion}}</span>
+              <div class="bar">
+                <input type="range" min="0" value="0" max="100" seek-track />
+                <div
+                  class="bar2"
+                  ng-style="{width : ( progress + '%' ) }"
+                ></div>
+              </div>
+              <span>{{currentDuration}}</span>
+              <div>
+                <i
+                  ng-show="!repeat"
+                  class="mx-2 bi bi-arrow-repeat text-light h5"
+                  repeat-music
+                ></i>
+                <i
+                  ng-show="repeat"
+                  class="mx-2 bi bi-arrow-repeat text-info h5"
+                  repeat-music
+                ></i>
+              </div>
+              <div class="vol">
+                <div>
+                  <i
+                    ng-show="!mute"
+                    class="bi bi-volume-down-fill"
+                    mute-music
+                  ></i>
+                  <i
+                    ng-show="mute"
+                    class="bi bi-volume-mute-fill"
+                    mute-music
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
     </div>
-
-    
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-  <script>
-     var app = angular.module("myApp", ['ngRoute']);
-        app.config(function($routeProvider) {
-            $routeProvider
-            .when("/",{
-                templateUrl:"/discover.html"
-            })
-            .when("/Discover",{
-                templateUrl:"/discover.html"
-            })
-            .when("/MV",{
-                templateUrl:"/MV.html"
-            })
-            .when("/artist",{
-                templateUrl:"/artist.html"
-            })
-            .when("/YourPlaylist",{
-                templateUrl:"/yourplaylist.html"
-            })
-            .when("/Category",{
-              templateUrl:"/category.html"
-            });
-        
-        
-        });
-  </script>
   </body>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
+  <script src="./distribution/angular-ui-router.js"></script>
+  <script src="./distribution/angular-soundmanager2.min.js"></script>
+  <script src="uiview.js"></script>
+  <script src="signin-signup.js"></script>
 </html>

@@ -1,147 +1,201 @@
-<html lang="en">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+  <link rel="stylesheet" href="/css/style.css" type="text/css" />
 </head>
-<body>
-  <!-- Carousel -->
-<div class="row ">
-   <!-- Carousel -->
-  <div class="col-12 text-align-center"> 
-    <div id="demo" class="carousel slide text-align-center ms-5 mt-5" data-bs-ride="carousel">
 
-      <!-- Indicators/dots -->
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-      </div>
-      
-      <!-- The slideshow/carousel -->
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="/Image/logo button.png" alt="Los Angeles" class="d-block" style="width:50%; height: auto;">
+<div class="category">
+  <!--Genre-->
+  <!-- Rock -->
+  <div class="bySong">
+    <div class="h4 d-flex justify-content-between">
+      <h4>Rock</h4>
+    </div>
+    <div class="listSong d-flex flex-wrap justify-content-start">
+      <li
+        ng-repeat="song in songs|filter:{genre:'rock'}|filter:mySearch|limitTo:15"
+      >
+        <div class="img_play">
+          <img src="{{song.picUrl}}" alt="{{song.title}}" />
+          <i
+            class="bi playListPlay bi-play-circle-fill"
+            music-player="play"
+            add-song="song"
+          ></i>
         </div>
-        <div class="carousel-item">
-          <img src="/Image/menu home button.png" alt="Chicago" class="d-block" style="width:50%; height: auto;">
+        <h5>
+          {{song.title}}
+          <br />
+          <a ui-sref="artist({id:song.id})" class="text-decoration-none">
+            <div class="singer">{{song.artist[0]}}</div>
+          </a>
+        </h5>
+      </li>
+    </div>
+  </div>
+  <!-- Pop -->
+  <div class="bySong">
+    <div class="h4 d-flex justify-content-between">
+      <h4>Pop</h4>
+    </div>
+    <div class="listSong d-flex flex-wrap justify-content-start">
+      <li
+        ng-repeat="song in songs|filter:{genre:'pop'}|filter:mySearch|limitTo:15"
+      >
+        <div class="img_play">
+          <img src="{{song.picUrl}}" alt="{{song.title}}" />
+          <i
+            class="bi playListPlay bi-play-circle-fill"
+            music-player="play"
+            add-song="song"
+          ></i>
         </div>
-        <div class="carousel-item">
-          <img src="/Image/logo.png" alt="New York" class="d-block" style="width:50%; height: auto;">
+        <h5>
+          {{song.title}}
+          <br />
+          <a ui-sref="artist({id:song.id})" class="text-decoration-none">
+            <div class="singer">{{song.artist[0]}}</div>
+          </a>
+        </h5>
+      </li>
+    </div>
+  </div>
+  <!-- Event: Love -->
+  <div class="bySong" id="event">
+    <div class="h4 d-flex justify-content-between">
+      <h4>Feeling Loved</h4>
+    </div>
+    <div class="listSong d-flex flex-wrap justify-content-start">
+      <li
+        ng-repeat="song in songs|filter:{event:'love'}|filter:mySearch|limitTo:15"
+      >
+        <div class="img_play">
+          <img src="{{song.picUrl}}" alt="{{song.title}}" />
+          <i
+            class="bi playListPlay bi-play-circle-fill"
+            music-player="play"
+            add-song="song"
+          ></i>
         </div>
-      </div>
-      
-      <!-- Left and right controls/icons -->
-      <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
+        <h5>
+          {{song.title}}
+          <br />
+          <a ui-sref="artist({id:song.id})" class="text-decoration-none">
+            <div class="singer">{{song.artist[0]}}</div>
+          </a>
+        </h5>
+      </li>
+    </div>
+  </div>
+  <!-- Event: running -->
+  <div class="bySong">
+    <div class="h4 d-flex justify-content-between">
+      <h4>Running</h4>
+    </div>
+    <div class="listSong d-flex flex-wrap justify-content-start">
+      <li
+        ng-repeat="song in songs|filter:{event:'running'}|filter:mySearch|limitTo:15"
+      >
+        <div class="img_play">
+          <img src="{{song.picUrl}}" alt="{{song.title}}" />
+          <i
+            class="bi playListPlay bi-play-circle-fill"
+            music-player="play"
+            add-song="song"
+          ></i>
+        </div>
+        <h5>
+          {{song.title}}
+          <br />
+          <a ui-sref="artist({id:song.id})" class="text-decoration-none">
+            <div class="singer">{{song.artist[0]}}</div>
+          </a>
+        </h5>
+      </li>
+    </div>
+  </div>
+  <!-- Event: cafe -->
+  <div class="bySong">
+    <div class="h4 d-flex justify-content-between">
+      <h4>Cafe</h4>
+    </div>
+    <div class="listSong d-flex flex-wrap justify-content-start">
+      <li
+        ng-repeat="song in songs|filter:{event:'cafe'}|filter:mySearch|limitTo:15"
+      >
+        <div class="img_play">
+          <img src="{{song.picUrl}}" alt="{{song.title}}" />
+          <i
+            class="bi playListPlay bi-play-circle-fill"
+            music-player="play"
+            add-song="song"
+          ></i>
+        </div>
+        <h5>
+          {{song.title}}
+          <br />
+          <a ui-sref="artist({id:song.id})" class="text-decoration-none">
+            <div class="singer">{{song.artist[0]}}</div>
+          </a>
+        </h5>
+      </li>
+    </div>
+  </div>
+  <!-- Nation: VN -->
+  <div class="bySong" id="nation">
+    <div class="h4 d-flex justify-content-between">
+      <h4>Vietnam</h4>
+    </div>
+    <div class="listSong d-flex flex-wrap justify-content-start">
+      <li
+        ng-repeat="song in songs|filter:{nation:'vn'}|filter:mySearch|limitTo:15"
+      >
+        <div class="img_play">
+          <img src="{{song.picUrl}}" alt="{{song.title}}" />
+          <i
+            class="bi playListPlay bi-play-circle-fill"
+            music-player="play"
+            add-song="song"
+          ></i>
+        </div>
+        <h5>
+          {{song.title}}
+          <br />
+          <a ui-sref="artist({id:song.id})" class="text-decoration-none">
+            <div class="singer">{{song.artist[0]}}</div>
+          </a>
+        </h5>
+      </li>
+    </div>
+  </div>
+  <!-- Nation: US-UK -->
+  <div class="bySong">
+    <div class="h4 d-flex justify-content-between">
+      <h4>US-UK</h4>
+    </div>
+    <div class="listSong d-flex flex-wrap justify-content-start">
+      <li
+        ng-repeat="song in songs|filter:{nation:'us-uk'}|filter:mySearch|limitTo:15"
+      >
+        <div class="img_play">
+          <img src="{{song.picUrl}}" alt="{{song.title}}" />
+          <i
+            class="bi playListPlay bi-play-circle-fill"
+            music-player="play"
+            add-song="song"
+          ></i>
+        </div>
+        <h5>
+          {{song.title}}
+          <br />
+          <a ui-sref="artist({id:song.id})" class="text-decoration-none">
+            <div class="singer">{{song.artist[0]}}</div>
+          </a>
+        </h5>
+      </li>
     </div>
   </div>
 </div>
-
-<!--Genre-->
-<div class="row">
-  <div class="col-md-3 ms-3 mt-3">
-    <a href="" class="text-decoration-none"
-      ><div class="container bg-success text-light rounded-pill text-center h-auto h2">
-        Genre
-      </div>
-    </a>
-  </div>
-  <div class="col-md-12 m-3 d-inline-flex ">
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em;" />
-        </a>
-      </div>
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-  </div>
-</div>
-
-<!--Nation-->
-<div class="row">
-  <div class="col-md-3 ms-3 mt-3">
-    <a href="" class="text-decoration-none"
-      ><div class="container bg-success text-light rounded-pill text-center h-auto h2">
-        Nation
-      </div>
-    </a>
-  </div>
-  <div class="col-md-12 m-3 d-inline-flex ">
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-  </div>
-</div>
-
-<!--Mood-->
-<div class="row">
-  <div class="col-md-3 ms-3 mt-3">
-    <a href="" class="text-decoration-none"
-      ><div class="container bg-success text-light rounded-pill text-center h-auto h2">
-        Mood
-      </div>
-    </a>
-  </div>
-  <div class="col-md-12 m-3 d-inline-flex ">
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-      <div class="col-md-1 bg-light text-center mx-3">
-        <a href="">
-        <img src="/Image/MUSICWORLD (1).png" alt="" style="width: 5em" />
-        </a>
-      </div>
-  </div>
-</div>
-
-
