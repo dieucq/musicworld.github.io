@@ -5,7 +5,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
     .state("yourPlaylist", {
       url: "/yourPlaylist",
       templateUrl: "./yourplaylist.html",
-      controller: "playListCtr as yourPlaylist",
+      controller: "playListCtrl as yourPlaylist",
       data: { pageTitle: "yourPlaylist" },
     })
     .state("discover", {
@@ -36,11 +36,13 @@ app.run(function ($rootScope, $http) {
   });
 });
 
-app.controller("mainCtrl", function ($scope, $http) {});
+app.controller("mainCtrl", function () {});
 
-app.controller("disCtrl", function ($scope) {});
+app.controller("playListCtrl", function () {});
 
-app.controller("catCtrl", function ($scope) {});
+app.controller("disCtrl", function () {});
+
+app.controller("catCtrl", function () {});
 
 app.controller("artistCtrl", function ($scope, $stateParams) {
   var id = $stateParams.id;

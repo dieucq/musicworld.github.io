@@ -21,6 +21,7 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="signin-signup.js">
   </head>
 
   <body
@@ -197,8 +198,9 @@
                         <i class="bi bi-person-circle"></i>
                       </button>
                       <ul class="dropdown-menu">
-                        <li><button onclick="document.getElementById('id02').style.display='block'" style="width:auto;" type="button" class="btn">Sign In</button_a></li>
-                        <li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" type="button" class="btn">Sign Up</button_a></li>
+                        <li><button id="signin" onclick="document.getElementById('id02').style.display='block'" style="width:auto;" type="button" class="btn">Sign In</button_a></li>
+                        <li><button id="signup" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" type="button" class="btn">Sign Up</button_a></li>
+                        <li><button id="signout" onclick="signout()" style="width:auto;display: none;" type="button" class="btn">Sign Out</button_a></li>
                       </ul>
                     </div>
                   </div>
@@ -282,7 +284,7 @@
                       <!-- Comment -->
                       <div id="id03" class="modal mt-5">
                         <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
-                        <form class="modal-content_a m-auto" onsubmit="submit()">
+                        <form class="modal-content_a m-auto" >
                           <div class="container">
                             
                                 <label for="country">Country</label>
@@ -296,14 +298,7 @@
                                 <textarea id="subject" name="subject" placeholder="Comment in here..." style="height:200px; width: 100%;" ></textarea>
                             <div class="clearfix">
                               <button_a type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button_a>
-                              <input type="submit" class="signupbtn"  value="Save changes" style="background-color: #04AA6D;
-                              color: white;
-                              padding: 14px 20px;
-                              margin: 8px 0;
-                              border: none;
-                              cursor: pointer;
-                              width: 50%;
-                              opacity: 0.9;" > 
+                              <button_a type="submit" onclick="submit()" class="signupbtn" >Submit</button_a>
                             
                             </div>
                           </div>
@@ -315,22 +310,22 @@
                         <form class="modal-content_a m-auto">
                           <div class="container">
                             
-                                <label for="country">Music: </label>
+                                <label ><b>Music:</b>  </label>
                                 <span>{{currentPlaying.title}}</span> <br>
 
-                                <label for="country">Artist: </label>
+                                <label > <b>Artist:</b>  </label>
                                 <span>{{currentPlaying.artist[1]}}</span> <br>
 
-                                <label for="country">Album: </label>
+                                <label ><b>Album:</b> Album: </label>
                                 <span>{{currentPlaying.album}}</span> <br>
 
-                                <label for="country">Genre: </label>
+                                <label > <b>Genre:</b>  </label>
                                 <span>{{currentPlaying.genre}}</span> <br>
                                 
-                                <label for="country">Nation: </label>
+                                <label> <b>Nation:</b>  </label>
                                 <span>{{currentPlaying.nation}}</span> <br>
                                
-                                <textarea id="subject" name="subject" style="height:200px; width: 100%;" >{{currentPlaying.lyric}}</textarea>
+                                <textarea style="height:200px; width: 100%;" >{{currentPlaying.lyric}}</textarea>
                             <div class="clearfix">
                               <button_a type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn">Cancel</button_a>
                             </div>
@@ -421,6 +416,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
   <script src="./distribution/angular-ui-router.js"></script>
   <script src="./distribution/angular-soundmanager2.min.js"></script>
-  <script src="uiview.js"></script>
-  <script src="signin-signup.js"></script>
+   <script src="uiview.js"></script>
+  <script src="signin-signup.js"></script>  
 </html>
